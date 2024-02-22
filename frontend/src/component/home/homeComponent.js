@@ -23,7 +23,8 @@ const HomeComponent = () => {
 
     return (
         <div className="container py-3 relative">
-            <ContactAppContext.Provider value={{contactList, setContactList, isFocus, setIsFocus, isLoading, setIsLoading}}>
+            <ContactAppContext.Provider
+                value={{contactList, setContactList, isFocus, setIsFocus, isLoading, setIsLoading}}>
                 <HeaderComponent/>
                 <MainComponent/>
             </ContactAppContext.Provider>

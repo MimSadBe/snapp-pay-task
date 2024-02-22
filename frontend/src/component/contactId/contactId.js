@@ -32,21 +32,21 @@ const ContactId = () => {
         getData()
     }, [id]);
 
-    const addToVisit = (contact) =>{
+    const addToVisit = (contact) => {
         let lastVisitContact = localStorage.getItem("lastVisitContact");
 
-        if(lastVisitContact){
+        if (lastVisitContact) {
             lastVisitContact = JSON.parse(lastVisitContact);
-            if(Number(lastVisitContact.totalVisit) > 0){
+            if (Number(lastVisitContact.totalVisit) > 0) {
                 lastVisitContact.totalVisit = +lastVisitContact.totalVisit + 1
-                console.log("lastVisitContact :",lastVisitContact.totalVisit)
-            }else {
+                console.log("lastVisitContact :", lastVisitContact.totalVisit)
+            } else {
                 lastVisitContact.totalVisit = 1;
-                console.log("lastVisitContact else must be 1 :",lastVisitContact.totalVisit)
+                console.log("lastVisitContact else must be 1 :", lastVisitContact.totalVisit)
 
             }
             localStorage.setItem("lastVisitContact", JSON.stringify(lastVisitContact))
-        }else {
+        } else {
             let _contact = {
                 ...contact,
                 "totalVisit": 1

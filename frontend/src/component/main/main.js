@@ -23,7 +23,8 @@ const MainComponent = () => {
             </div>
             {
                 isLoading ?
-                    <div className="w-full flex justify-center items-center flex-col h-full text-main-color text-2xl flex-1">
+                    <div
+                        className="w-full flex justify-center items-center flex-col h-full text-main-color text-2xl flex-1">
                         <img src="/assets/img/loading.svg" alt="loading"/>
                     </div>
                     :
@@ -50,7 +51,9 @@ const MainComponent = () => {
                             </div>
                         </div>
                         :
-                        <div className="w-full flex-1 justify-center items-center flex font-bold text-2xl">No Result</div>
+                        <div className="w-full flex-1 justify-center items-center flex font-bold text-2xl">
+                            No Result
+                        </div>
 
             }
 
