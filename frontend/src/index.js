@@ -6,19 +6,10 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime) {
-    console.log("--- index ---")
-    console.log("id, phase, actualDuration, baseDuration, startTime, commitTime: ")
-    console.log(id, phase, actualDuration, baseDuration, startTime, commitTime)
-    console.log("--- index ---")
-
-}
 
 root.render(
     <React.StrictMode>
-        <Profiler id="App" onRender={onRender}>
-            <App/>
-        </Profiler>
+        <App/>
     </React.StrictMode>
 );
 

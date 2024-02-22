@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 
 const ContactId = () => {
     const {id} = useParams();
-    console.log("Contact Id Rendered !")
     const [contact, setContact] = useState(null)
     const [statusModal, setStatusModal] = useState({
         phone: false,
@@ -22,7 +21,6 @@ const ContactId = () => {
         let response = await fetch(`${process.env.REACT_APP_BASE_URL}/passenger/${id}`)
         if (response) {
             let data = await response?.json()
-            // console.log(data)
             setContact(data)
             addToVisit(data)
         }
@@ -39,10 +37,8 @@ const ContactId = () => {
             lastVisitContact = JSON.parse(lastVisitContact);
             if (Number(lastVisitContact.totalVisit) > 0) {
                 lastVisitContact.totalVisit = +lastVisitContact.totalVisit + 1
-                console.log("lastVisitContact :", lastVisitContact.totalVisit)
             } else {
                 lastVisitContact.totalVisit = 1;
-                console.log("lastVisitContact else must be 1 :", lastVisitContact.totalVisit)
 
             }
             localStorage.setItem("lastVisitContact", JSON.stringify(lastVisitContact))

@@ -5,7 +5,6 @@ import ContactId from "./component/contactId/contactId";
 import NotFound from "./component/notFound/notFound";
 
 function App() {
-    console.log("App.js Rendered !")
     return (
         <BrowserRouter>
             <Routes>
