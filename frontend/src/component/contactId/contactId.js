@@ -1,5 +1,5 @@
 import {Link, useParams} from "react-router-dom";
-import {useEffect, useMemo, useState} from "react";
+import {useEffect, useState} from "react";
 
 const ContactId = () => {
     const {id} = useParams();
@@ -77,7 +77,6 @@ const ContactId = () => {
                             :
                             contact?.first_name?.split("")[0] + " " + contact?.last_name?.split("")[0]
                     }
-
                 </div>
                 <div className="mb-6">
                     <div className={"w-full justify-center items-center flex gap-1 font-semibold text-2xl"}>
@@ -87,7 +86,6 @@ const ContactId = () => {
                     <div className="w-full justify-center items-center flex text-gray-color">
                         {contact?.company}
                     </div>
-
                 </div>
 
                 <div className="w-100 grid grid-cols-5 gap-2 mb-4">
@@ -119,7 +117,6 @@ const ContactId = () => {
                                 </a>
                             </div>
                         </div>
-
                     </div>
                     <div
                         className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2  text-main-color  cursor-pointer relative"
@@ -161,7 +158,6 @@ const ContactId = () => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div
                         className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2  text-main-color  cursor-pointer relative"
@@ -206,7 +202,6 @@ const ContactId = () => {
                     </div>
                     <a href={`mailto:${contact?.email}`}
                        className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2  text-main-color  cursor-pointer relative"
-
                     >
                         <img src="/assets/img/mail.svg" alt="mail"/>
                         mail

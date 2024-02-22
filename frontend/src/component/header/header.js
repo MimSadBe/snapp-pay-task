@@ -1,15 +1,15 @@
 import {useContext, useRef} from "react";
-import {ContactListContext} from "../../provider/contactList";
+import {ContactAppContext} from "../../provider/contactList";
 
 let timer;
 const HeaderComponent = () => {
 
-    let {setContactList, isFocus, setIsFocus} = useContext(ContactListContext);
+    let {setContactList, isFocus, setIsFocus, setIsLoading} = useContext(ContactAppContext);
 
     const from = useRef()
 
     const handleSearch = () => {
-
+        setIsLoading(true)
         const formEl = from.current;
         const firstName = formEl.elements['first_name'].value ?? '';
         const lastName = formEl.elements['last_name'].value ?? '';
@@ -22,15 +22,14 @@ const HeaderComponent = () => {
             clearTimeout(timer);
         }
 
-        const newTimer = setTimeout(async () => {
+        timer = setTimeout(async () => {
             let response = await fetch(`${process.env.REACT_APP_BASE_URL}/passenger/?where=${JSON.stringify(query)}&sort=createdAt DESC&limit=30`)
             if (response) {
+                setIsLoading(false)
                 let data = await response?.json()
                 setContactList(data?.items)
             }
         }, 1000);
-
-        timer = newTimer;
     }
 
     const handleFocus = () => {
@@ -62,7 +61,7 @@ const HeaderComponent = () => {
                 <div className="relative">
                     <input
                         type="text"
-                        className="bg-box-color w-full rounded-md h-8 indent-8"
+                        className="bg-box-color w-full rounded-md h-8 indent-8 focus:outline-none"
                         placeholder={`${isFocus ? 'First Name' : 'Search'}`}
                         name="first_name"
                         onChange={(e) => handleSearch(e)}
@@ -78,7 +77,7 @@ const HeaderComponent = () => {
                 <div className="relative">
                     <input
                         type="text"
-                        className="bg-box-color w-full rounded-md h-8 indent-8"
+                        className="bg-box-color w-full rounded-md h-8 indent-8 focus:outline-none"
                         placeholder="Last Name"
                         onChange={(e) => handleSearch(e)}
                         onFocus={() => handleFocus()}

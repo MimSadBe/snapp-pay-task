@@ -1,4 +1,4 @@
-import {ContactListContext} from "../../provider/contactList";
+import {ContactAppContext} from "../../provider/contactList";
 import HeaderComponent from "../header/header";
 import MainComponent from "../main/main";
 import {useEffect, useState} from "react";
@@ -7,7 +7,8 @@ const HomeComponent = () => {
 
     const [contactList, setContactList] = useState(null)
     const [isFocus, setIsFocus] = useState(false)
-    console.log("HomeComponent Rendered")
+    const [isLoading, setIsLoading] = useState(false)
+
     const getData = async () => {
         const response = await fetch(`${process.env.REACT_APP_BASE_URL}/passenger`)
         const data = await response.json()
@@ -22,10 +23,10 @@ const HomeComponent = () => {
 
     return (
         <div className="container py-3 relative">
-            <ContactListContext.Provider value={{contactList, setContactList, isFocus, setIsFocus}}>
+            <ContactAppContext.Provider value={{contactList, setContactList, isFocus, setIsFocus, isLoading, setIsLoading}}>
                 <HeaderComponent/>
                 <MainComponent/>
-            </ContactListContext.Provider>
+            </ContactAppContext.Provider>
         </div>
     )
 }
