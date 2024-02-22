@@ -1,33 +1,44 @@
 import {useContext} from "react";
 import {ContactListContext} from "../../provider/contactList";
+import {Link} from "react-router-dom";
 
 const MainComponent = () => {
-    const { contactList } = useContext(ContactListContext);
+    let {contactList, isFocus, setIsFocus} = useContext(ContactListContext);
+
+    const handleFocus = () => {
+        setIsFocus(false);
+    }
+
     return (
-        <main className={"max-h-[calc(100vh-117px)] overflow-y-auto"}>
-            <div className={"flex items-center gap-2 mb-4"}>
-                <img className={"size-16 object-contain"} src={"/avatar.png"} alt=""/>
-                <div className={"flex flex-col font-bold"}>
+        <main className={`${isFocus ? 'max-h-[calc(100vh-160px)]' : 'max-h-[calc(100vh-117px)]'} overflow-y-auto`}
+              onClick={() => handleFocus()}>
+            <div className="flex items-center gap-2 mb-4">
+                <img className="size-16 object-contain" src="/assets/img/avatar.png" alt="Avatar"/>
+                <div className="flex flex-col font-bold">
                     Sadegh Babaei
-                    <small className={"text-[#8a8a8a] font-normal"}>
+                    <small className="text-[#8a8a8a] font-normal">
                         My Card
                     </small>
                 </div>
             </div>
             {
                 (contactList && contactList.length > 0) &&
-                <div className={""}>
-                    <div className={"font-bold text-[#8a8a8a] pb-1 mb-1 border-b border-[#181818] sticky"}>
+                <div>
+                    <div className="font-bold text-gray-color pb-1 mb-1 border-b border-bottom-color sticky">
                         Contact
                     </div>
-                    <div className={"flex flex-col"}>
+                    <div className="flex flex-col">
                         {
                             contactList.map((contact) => {
                                 return (
-                                    <div key={contact?.id} className={"pb-2 mb-1 border-b border-[#181818]"}>
+                                    <Link to={`contact/${contact?.id}`} key={contact?.id}
+                                          className="pb-2 mb-1 border-b border-bottom-color">
                                         {contact?.first_name}
-                                        <strong className={"ml-1 font-semibold"}>{contact?.last_name}</strong>
-                                    </div>
+                                        <strong className="ml-1 font-semibold">
+                                            {contact?.last_name}
+                                        </strong>
+
+                                    </Link>
                                 )
                             })
                         }

@@ -12,7 +12,9 @@ module.exports = {
             },
             colors: {
                 "main-color": "#0b84f5",
-                "box-color": "#1c1c1e",
+                "box-color": "#eeeeee",
+                "border-bottom-color": "#cacaca",
+                "background-id": "#f2f1f7",
                 "gray-color": "#8f8f91"
             }
         },
