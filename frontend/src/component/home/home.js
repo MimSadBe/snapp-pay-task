@@ -3,7 +3,7 @@ import HeaderComponent from "../header/header";
 import MainComponent from "../main/main";
 import {useEffect, useState} from "react";
 
-const HomeComponent = () => {
+const Home = () => {
 
     const [contactList, setContactList] = useState(null)
     const [isFocus, setIsFocus] = useState(false)
@@ -32,4 +32,4 @@ const HomeComponent = () => {
     )
 }
 
-export default HomeComponent
+export default Home
