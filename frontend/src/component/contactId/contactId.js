@@ -10,12 +10,12 @@ const ContactId = () => {
         videoCall: false,
     })
 
-
-    // let statusModal = {
-    //     phone: false,
-    //     message: false,
-    //     videoCall: false,
-    // };
+    const toggleSingleProperty = (propertyName) => {
+        setStatusModal(prevState => ({
+            ...prevState,
+            [propertyName]: !prevState[propertyName], // Dynamic property access
+        }));
+    };
 
     const getData = async () => {
         let response = await fetch(`${process.env.REACT_APP_BASE_URL}/passenger/${id}`)
@@ -87,16 +87,7 @@ const ContactId = () => {
                 <div className="w-100 grid grid-cols-5 gap-2 mb-4">
                     <div
                         className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2  text-main-color  cursor-pointer relative"
-                        onClick={() => {
-                            setStatusModal(prevState => {
-                                let lastState = {...prevState}
-                                lastState.message = !lastState.message;
-                                lastState.phone = false;
-                                lastState.videoCall = false;
-
-                                return lastState
-                            })
-                        }}
+                        onClick={() => toggleSingleProperty("message")}
                     >
                         <img src="/assets/img/message.svg" alt="message"/>
                         message
@@ -116,16 +107,7 @@ const ContactId = () => {
                     </div>
                     <div
                         className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2  text-main-color  cursor-pointer relative"
-                        onClick={() => {
-                            // statusModal.phone = !statusModal.phone;
-                            setStatusModal(prevState => {
-                                let lastState = {...prevState}
-                                lastState.message = false;
-                                lastState.phone = !lastState.phone;
-                                lastState.videoCall = false;
-                                return lastState
-                            })
-                        }}
+                        onClick={() => toggleSingleProperty("phone")}
                     >
                         <img src="/assets/img/phone.svg" alt="phone"/>
                         call
