@@ -1,5 +1,6 @@
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import Modal from "../modal/modal";
 
 const ContactId = () => {
     const {id} = useParams();
@@ -10,11 +11,20 @@ const ContactId = () => {
         videoCall: false,
     })
 
-    const toggleSingleProperty = (propertyName) => {
-        setStatusModal(prevState => ({
-            ...prevState,
-            [propertyName]: !prevState[propertyName], // Dynamic property access
-        }));
+    const toggleStatusModal = (propertyName) => {
+        const prevState = {...statusModal};
+
+        // Open this modal
+        prevState[propertyName] = !prevState[propertyName];
+
+        // Close other open status
+        for (const key in prevState) {
+            if (key !== propertyName) {
+                prevState[key] = false;
+            }
+        }
+
+        setStatusModal(prevState);
     };
 
     const getData = async () => {
@@ -56,6 +66,7 @@ const ContactId = () => {
         <div className="">
             <div
                 className="bg-background-id h-screen container relative py-3 flex flex-col max-h-screen overflow-y-auto">
+
                 <header className="flex justify-between items-center mb-4">
                     <Link to={"/"} className="text-main-color flex items-center font-semibold">
                         <img src="/assets/img/blue_left_arrow.svg" alt="Arrow left"/>
@@ -74,6 +85,7 @@ const ContactId = () => {
                             contact?.first_name?.split("")[0] + " " + contact?.last_name?.split("")[0]
                     }
                 </div>
+
                 <div className="mb-6">
                     <div className={"w-full justify-center items-center flex gap-1 font-semibold text-2xl"}>
                         <span>{contact?.first_name}</span>
@@ -86,108 +98,61 @@ const ContactId = () => {
 
                 <div className="w-100 grid grid-cols-5 gap-2 mb-4">
                     <div
-                        className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2  text-main-color  cursor-pointer relative"
-                        onClick={() => toggleSingleProperty("message")}
+                        className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2 text-main-color cursor-pointer relative"
+                        onClick={() => toggleStatusModal("message")}
                     >
+
                         <img src="/assets/img/message.svg" alt="message"/>
                         message
-                        <div
-                            className={`${statusModal.message ? "flex" : "hidden"} z-10 absolute -bottom-[60px] left-0 w-60 bg-white rounded-xl py-2 shadow-2xl`}>
-                            <div className="flex flex-col w-full">
-                                <a href={`sms:${contact?.phone}`}
-                                   className="flex items-center justify-between w-full px-6 ">
-                                    <div className="flex flex-col">
-                                        <span className="font-semibold">mobile</span>
-                                        <span className="text-gray-color">{contact?.phone}</span>
-                                    </div>
-                                    <img className="size-5" src="/assets/img/message-circle.svg" alt="message"/>
-                                </a>
-                            </div>
-                        </div>
+
+                        <Modal
+                            showStatus={statusModal.message}
+                            phoneNumber={contact?.phone}
+                            type="message"
+                        />
                     </div>
                     <div
-                        className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2  text-main-color  cursor-pointer relative"
-                        onClick={() => toggleSingleProperty("phone")}
+                        className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2 text-main-color cursor-pointer relative"
+                        onClick={() => toggleStatusModal("phone")}
                     >
+
                         <img src="/assets/img/phone.svg" alt="phone"/>
                         call
-                        <div
-                            className={`${statusModal.phone ? "flex" : "hidden"} z-10 absolute -bottom-[135px] left-0 w-60 bg-white rounded-xl pt-2 pb-3 shadow-2xl`}>
-                            <div className="flex flex-col w-full">
-                                <a href={`tel:${contact?.phone}`}
-                                   className="flex items-center justify-between w-full px-6 ">
-                                    <div className="flex flex-col">
-                                        <span className="font-semibold">mobile</span>
-                                        <span className="text-gray-color">{contact?.phone}</span>
-                                    </div>
-                                    <img className="size-5" src="/assets/img/phone-normal.svg" alt="phone"/>
-                                </a>
-                                <div className="flex flex-col pt-2 mt-2 border-t border-background-id">
-                                    <div className="flex items-center font-semibold pl-4 gap-2 mb-2">
-                                        <span><img src="/assets/img/arrow-down.svg" alt="arrow right"/></span>
-                                        Telegram
-                                    </div>
-                                    <a href={`https://t.me/@${contact?.telegram}`}
-                                       className="flex items-center justify-between w-full px-6 " target="_blank"
-                                       rel="noreferrer">
-                                        <span className="text-gray-color">@{contact?.telegram}</span>
-                                        <img className="size-5" src="/assets/img/brand-telegram.svg" alt="telegram"/>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+
+                        <Modal
+                            showStatus={statusModal.phone}
+                            phoneNumber={contact?.phone}
+                            type="phone"
+                            idTelegram={contact?.telegram}
+                        />
                     </div>
                     <div
                         className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2  text-main-color  cursor-pointer relative"
-                        onClick={() => {
-                            // statusModal.phone = !statusModal.phone;
-                            setStatusModal(prevState => {
-                                let lastState = {...prevState}
-                                lastState.message = false;
-                                lastState.phone = false;
-                                lastState.videoCall = !lastState.videoCall;
-                                return lastState
-                            })
-                        }}
+                        onClick={() => toggleStatusModal("videoCall")}
                     >
+
                         <img src="/assets/img/video.svg" alt="video"/>
                         video
-                        <div
-                            className={`${statusModal.videoCall ? "flex" : "hidden"} z-10 absolute -bottom-[135px] left-0 w-56 bg-white rounded-xl pt-2 pb-3 shadow-2xl`}>
-                            <div className="flex flex-col w-full">
-                                <a href={`tel:${contact?.phone}`}
-                                   className="flex items-center justify-between w-full px-6 ">
-                                    <div className="flex flex-col">
-                                        <span className="font-semibold">mobile</span>
-                                        <span className="text-gray-color">{contact?.phone}</span>
-                                    </div>
-                                    <img className="size-5" src="/assets/img/phone-normal.svg" alt="phone"/>
-                                </a>
-                                <div className="flex flex-col pt-2 mt-2 border-t border-background-id">
-                                    <div className="flex items-center font-semibold pl-4 gap-2 mb-2">
-                                        <span><img src="/assets/img/arrow-down.svg" alt="arrow right"/></span>
-                                        Telegram
-                                    </div>
-                                    <a href={`https://t.me/@${contact?.telegram}`}
-                                       className="flex items-center justify-between w-full px-6 " target="_blank"
-                                       rel="noreferrer">
-                                        <span className="text-gray-color">@{contact?.telegram}</span>
-                                        <img className="size-5" src="/assets/img/brand-telegram.svg" alt="telegram"/>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <Modal
+                            showStatus={statusModal.videoCall}
+                            phoneNumber={contact?.phone}
+                            type="videoCall"
+                            idTelegram={contact?.telegram}
+                        />
                     </div>
                     <a href={`mailto:${contact?.email}`}
                        className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2  text-main-color  cursor-pointer relative"
                     >
+
                         <img src="/assets/img/mail.svg" alt="mail"/>
                         mail
+
                     </a>
-                    <div
-                        className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2  text-main-color  cursor-no-drop relative grayscale">
+                    <div className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2  text-main-color  cursor-no-drop relative grayscale">
+
                         <img src="/assets/img/currency-dollar.svg" alt="pay"/>
                         pay
+
                     </div>
                 </div>
 
@@ -228,7 +193,6 @@ const ContactId = () => {
                     </div>
                     <div className="text-main-color ml-4 font-semibold">Add To Favorite</div>
                 </div>
-
 
                 <div className="flex flex-col p-3 rounded-xl bg-white mb-4 text-main-color text-md  font-semibold">
                     Add To Emergency Contact
