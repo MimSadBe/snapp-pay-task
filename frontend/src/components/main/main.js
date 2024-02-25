@@ -17,7 +17,6 @@ const MainComponent = () => {
             lastVisitContact = JSON.parse(lastVisitContact);
             lastVisitContact.sort((a, b) => b.totalVisit - a.totalVisit);
             setFrequentlyVisitedContacts(lastVisitContact)
-            console.log("parsLastVisitContact", lastVisitContact)
         }
     }
 
