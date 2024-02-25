@@ -1,6 +1,6 @@
-import {ContactAppContext} from "../../provider/contactList";
-import HeaderComponent from "../header/header";
-import MainComponent from "../main/main";
+import {ContactAppContext} from "../../context/main";
+import HeaderComponent from "../../components/header/header";
+import MainComponent from "../../components/main/main";
 import {useEffect, useState} from "react";
 
 const Home = () => {
@@ -10,10 +10,15 @@ const Home = () => {
     const [isLoading, setIsLoading] = useState(false)
 
     const getData = async () => {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/passenger`)
-        const data = await response.json()
-        if (data) {
-            setContactList(data?.items)
+        try{
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/passenger`)
+            const data = await response.json()
+            if (data) {
+                setContactList(data?.items)
+            }
+
+        }catch (e) {
+            console.error("Check backend :)",e);
         }
     }
 

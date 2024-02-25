@@ -1,5 +1,5 @@
 import {useContext, useRef} from "react";
-import {ContactAppContext} from "../../provider/contactList";
+import {ContactAppContext} from "../../context/main";
 
 let timer;
 const HeaderComponent = () => {
