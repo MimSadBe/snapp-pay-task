@@ -1,6 +1,6 @@
 import {useContext, useEffect, useState} from "react";
-import {ContactAppContext} from "../../provider/contactList";
 import {Link} from "react-router-dom";
+import {ContactAppContext} from "../../context/main";
 
 const MainComponent = () => {
     let {contactList, isFocus, setIsFocus, isLoading} = useContext(ContactAppContext);
