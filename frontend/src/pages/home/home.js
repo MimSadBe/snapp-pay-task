@@ -1,6 +1,6 @@
 import {ContactAppContext} from "../../context/main";
-import HeaderComponent from "../../components/header/header";
-import MainComponent from "../../components/main/main";
+import HeaderComponent from "../../components/header/Header";
+import MainComponent from "../../components/main/Main";
 import {useEffect, useState} from "react";
 
 const Home = () => {

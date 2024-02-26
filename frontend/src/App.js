@@ -2,7 +2,7 @@ import './App.css';
 import {Routes, Route, BrowserRouter} from "react-router-dom";
 import Home from "./pages/home/home";
 import ContactId from "./pages/contactId/contactId";
-import NotFound from "./components/notFound/notFound";
+import NotFound from "./components/notFound/NotFound";
 
 function App() {
     return (

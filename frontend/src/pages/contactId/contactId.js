@@ -1,6 +1,6 @@
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import Modal from "../../components/modal/modal";
+import Modal from "../../components/modal/Modal";
 
 
 const ContactId = () => {
