@@ -34,3 +34,17 @@ div, a {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: black;
+    }
+    div, a {
+        color: white;
+    }
+
+    .bg-box-color {
+        background-color: #1c1c1e;
+    }
+}

@@ -59,7 +59,7 @@ const HeaderComponent = () => {
         <div className="relative">
           <input
             type="text"
-            className="bg-box-color w-full rounded-md h-8 indent-8 focus:outline-none"
+            className="bg-box-color w-full rounded-md h-8 indent-8 focus:outline-none dark:bg-slate-800"
             placeholder={`${isFocus ? "First Name" : "Search"}`}
             name="first_name"
             onChange={(e) => handleSearch(e)}
@@ -74,7 +74,7 @@ const HeaderComponent = () => {
         <div className="relative">
           <input
             type="text"
-            className="bg-box-color w-full rounded-md h-8 indent-8 focus:outline-none"
+            className="bg-box-color w-full rounded-md h-8 indent-8 focus:outline-none dark:bg-slate-800"
             placeholder="Last Name"
             onChange={(e) => handleSearch(e)}
             onFocus={() => handleFocus()}
