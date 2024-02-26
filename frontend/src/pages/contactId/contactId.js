@@ -42,7 +42,7 @@ const ContactId = () => {
 
   const QuickAccess = () => {
     return (
-        <div className="w-100 grid grid-cols-5 gap-2 mb-4">
+        <div className="quick-access w-100 grid grid-cols-5 gap-2 mb-4">
           <div
               className="w-full bg-white rounded-xl flex items-center justify-center flex-col text-sm p-2 text-main-color cursor-pointer relative"
               onClick={toggleStatusModal}
@@ -157,7 +157,7 @@ const ContactId = () => {
 
   return (
 
-      <div className="bg-background-id h-screen container relative py-3 flex flex-col max-h-screen overflow-y-auto">
+      <div className="contact-id bg-background-id h-screen container relative py-3 flex flex-col max-h-screen overflow-y-auto">
 
         <header className="flex justify-between items-center mb-4">
           <Link to="/" className="text-main-color flex items-center font-semibold">

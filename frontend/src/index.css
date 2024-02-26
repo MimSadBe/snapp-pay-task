@@ -40,11 +40,24 @@ div, a {
     body {
         background: black;
     }
+
     div, a {
         color: white;
     }
 
-    .bg-box-color {
+    .header, .bg-background-id {
+        background: black;
+    }
+
+    .bg-box-color, .contact-id .bg-white {
         background-color: #1c1c1e;
+    }
+
+    .border-box-color, .border-bottom-color {
+        border-color: #181818;
+    }
+
+    .border-background-id {
+        border-color: #2a2a2c;
     }
 }

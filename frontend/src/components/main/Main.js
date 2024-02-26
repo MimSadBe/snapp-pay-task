@@ -41,7 +41,7 @@ const MainComponent = () => {
             {
                 frequentlyVisitedContacts &&
                 <div>
-                    <div className="font-bold text-gray-color pb-1 mb-1 border-b border-bottom-color sticky top-0 bg-white">
+                    <div className="font-bold text-gray-color pb-1 mb-1 border-b border-bottom-color sticky top-0 bg-white header">
                         Frequently visited contacts
                     </div>
                     <div className="flex flex-col">
@@ -72,7 +72,7 @@ const MainComponent = () => {
                     :
                     (contactList && contactList.length > 0) ?
                         <div>
-                            <div className="font-bold text-gray-color pb-1 mb-1 border-b border-bottom-color sticky top-0 bg-white">
+                            <div className="font-bold text-gray-color pb-1 mb-1 border-b border-bottom-color sticky top-0 bg-white header">
                                 Contact
                             </div>
                             <div className="flex flex-col">
